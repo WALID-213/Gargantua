@@ -1,1 +1,30 @@
+/* ===========================================
+   GARGANTUA DESIGN SYSTEM
+   Version: 1.0 Alpha
+=========================================== */
 
+:root {
+
+  /* ===== Colors ===== */
+  --void-black: #05060A;
+  --deep-space: #0D1021;
+
+  --cosmic-purple: #6D4AFF;
+  --nebula-blue: #4AB7FF;
+
+  --starlight: #F5F7FF;
+
+  --aurora-green: #3DDC97;
+  --supernova-red: #FF4D6D;
+
+  /* ===== Glow Colors ===== */
+  --cosmic-purple-glow: rgba(109, 74, 255, 0.4);
+  --nebula-blue-glow: rgba(74, 183, 255, 0.4);
+
+  /* ===== Typography ===== */
+  --font-main: "Space Grotesk", sans-serif;
+
+  /* ===== Border Radius ===== */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+}
