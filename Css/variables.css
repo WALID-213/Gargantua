@@ -30,3 +30,7 @@
   --radius-sm: 8px;
   --radius-md: 16px;
 }
+/* ===== Animation ===== */
+
+--transition-fast: .3s ease;
+--transition-medium: .5s ease;
