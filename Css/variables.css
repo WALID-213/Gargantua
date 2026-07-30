@@ -29,8 +29,8 @@
   /* ===== Border Radius ===== */
   --radius-sm: 8px;
   --radius-md: 16px;
-}
-/* ===== Animation ===== */
+   /* ===== Animation ===== */
 
 --transition-fast: .3s ease;
 --transition-medium: .5s ease;
+}
