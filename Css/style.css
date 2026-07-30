@@ -72,7 +72,9 @@ body{
 
     font-size:.85rem;
 
-    letter-s
+    letter-spacing: .18em;
+text-transform: uppercase;
+color: var(--starlight);
 /* =========================================
    NAVBAR
 ========================================= */
