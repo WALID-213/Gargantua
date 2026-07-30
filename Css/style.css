@@ -14,13 +14,10 @@ body{
 
 #stars-canvas{
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
     z-index: -2;
 
     background:
@@ -33,131 +30,124 @@ body{
 /* ===== Hero ===== */
 
 .hero{
-
     min-height:100vh;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     text-align:center;
-
     position:relative;
-
     padding:2rem;
 }
 
 /* ===== Hero Content ===== */
 
 .hero-content{
-
     max-width:850px;
-
     z-index:2;
 }
 
 /* ===== Badge ===== */
 
 .badge{
-
     display:inline-block;
-
     padding:.8rem 1.6rem;
-
     border:1px solid rgba(255,255,255,.08);
-
     border-radius:999px;
-
     margin-bottom:2rem;
-
     font-size:.85rem;
-
     letter-spacing: .18em;
-text-transform: uppercase;
-color: var(--starlight);
+    text-transform: uppercase;
+    color: var(--starlight);
 }
+
+/* ===== Title ===== */
+
+.hero h1{
+    font-size:clamp(4rem,10vw,8rem);
+    letter-spacing:10px;
+    margin-bottom:1.5rem;
+    color:var(--starlight);
+    text-shadow: 0 0 20px var(--cosmic-purple-glow);
+}
+
+/* ===== Text ===== */
+
+.hero-title{
+    font-size:2rem;
+    margin-bottom:1rem;
+}
+
+.hero-description{
+    font-size:1.15rem;
+    color: var(--text-muted);
+    margin-bottom:3rem;
+    line-height:1.8;
+}
+
+/* ===== Buttons ===== */
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    flex-wrap:wrap;
+}
+
+.btn-primary,
+.btn-secondary{
+    padding:1rem 2rem;
+    border-radius:12px;
+    transition:transform .3s;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg, var(--cosmic-purple), var(--nebula-blue));
+    color:white;
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.15);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover{
+    transform:translateY(-4px);
+}
+
 /* =========================================
    NAVBAR
 ========================================= */
 
 .navbar{
-
     position: fixed;
-
     top: 24px;
     left: 50%;
-
     transform: translateX(-50%);
-
     width: min(1100px, calc(100% - 40px));
-
     padding: 14px 28px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     border: 1px solid rgba(255,255,255,.08);
-
     border-radius: 18px;
-
     background: rgba(13,16,33,.45);
-
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-
     z-index: 1000;
 }
-   /* ===== Logo ===== */
+
+/* ===== Logo ===== */
 
 .nav-logo {
-
     display: flex;
     align-items: center;
     gap: 14px;
 }
 
 .logo-circle {
-
     width: 42px;
     height: 42px;
-
     border-radius: 50%;
-
-    background:
-        radial-gradient(circle,
-        #ffffff 5%,
-        var(--cosmic-purple) 35%,
-        transparent 70%);
-
-    box-shadow:
-        0 0 18px var(--cosmic-purple-glow);
-}
-
-.nav-logo span {
-
-    color: var(--starlight);
-
-    font-size: 1rem;
-    font-weight: 700;
-
-    letter-spacing: .35em;
-}/* ===== Logo ===== */
-
-.nav-logo {
-
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.logo-circle {
-
-    width: 42px;
-    height: 42px;
-
-    border-radius: 50%;
-
     background:
         radial-gradient(
             circle at center,
@@ -167,105 +157,70 @@ color: var(--starlight);
             #18122f 55%,
             transparent 75%
         );
-
     box-shadow:
         0 0 12px var(--cosmic-purple-glow),
         0 0 30px rgba(109, 74, 255, .25);
 }
 
 .nav-logo span {
-
     color: var(--starlight);
-
     font-size: 1.05rem;
     font-weight: 600;
-
     letter-spacing: .25em;
 }
-   /* ===== Navigation ===== */
+
+/* ===== Navigation ===== */
 
 .nav-links {
-
     display: flex;
     align-items: center;
-
     gap: 38px;
 }
 
 .nav-links a {
-
     position: relative;
-
     color: var(--text-muted);
-
     font-size: .95rem;
-
-    transition:
-        color .3s,
-        transform .3s;
+    transition: color .3s, transform .3s;
 }
 
 .nav-links a:hover {
-
     color: var(--starlight);
-
     transform: translateY(-2px);
 }
 
 .nav-links a.active {
-
     color: var(--starlight);
 }
 
 .nav-links a.active::after {
-
     content: "";
-
     position: absolute;
-
     left: 0;
     bottom: -10px;
-
     width: 100%;
     height: 2px;
-
     background: var(--cosmic-purple);
-
     border-radius: 999px;
-
-    box-shadow:
-        0 0 12px var(--cosmic-purple-glow);
+    box-shadow: 0 0 12px var(--cosmic-purple-glow);
 }
-   /* ===== Button ===== */
+
+/* ===== Button ===== */
 
 .nav-button {
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     padding: 12px 26px;
-
     border: 1px solid rgba(255,255,255,.10);
-
     border-radius: var(--radius-md);
-
     color: var(--starlight);
-
     background: rgba(255,255,255,.03);
-
-    transition:
-        background .3s,
-        transform .3s,
-        box-shadow .3s;
+    transition: background .3s, transform .3s, box-shadow .3s;
 }
 
 .nav-button:hover {
-
     background: var(--cosmic-purple);
-
     transform: translateY(-2px);
-
-    box-shadow:
-        0 0 20px var(--cosmic-purple-glow);
+    box-shadow: 0 0 20px var(--cosmic-purple-glow);
 }
