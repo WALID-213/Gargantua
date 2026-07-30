@@ -142,7 +142,6 @@ body{
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     z-index: 1000;
-   overflow: hidden;
 }
 
 /* ===== Logo ===== */
