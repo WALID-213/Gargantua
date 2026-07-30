@@ -241,7 +241,7 @@ body{
 @media (max-width: 768px) {
 
     .navbar{
-        padding: 12px 18px;
+        padding: 10px 20px;
     }
 
     .nav-links{
@@ -249,8 +249,8 @@ body{
     }
 
     .nav-logo span{
-        font-size: .85rem;
-        letter-spacing: .15em;
+        font-size: .75rem;
+        letter-spacing: .12em;
     }
 
     .logo-circle{
@@ -265,7 +265,7 @@ body{
 
     .hero h1{
         font-size: clamp(3rem, 14vw, 5rem);
-        letter-spacing: 4px;
+        letter-spacing: 2px;
     }
 
     .hero-title{
@@ -274,6 +274,8 @@ body{
 
     .hero-description{
         font-size: 1rem;
+       max-width: 320px;
+       margin: 0 auto 3rem;
     }
 
     .badge{
