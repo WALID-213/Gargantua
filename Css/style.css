@@ -158,23 +158,28 @@ color: var(--starlight);
     border-radius: 50%;
 
     background:
-        radial-gradient(circle,
-        #ffffff 5%,
-        var(--cosmic-purple) 35%,
-        transparent 70%);
+        radial-gradient(
+            circle at center,
+            #ffffff 0%,
+            #ffffff 8%,
+            var(--cosmic-purple) 25%,
+            #18122f 55%,
+            transparent 75%
+        );
 
     box-shadow:
-        0 0 18px var(--cosmic-purple-glow);
+        0 0 12px var(--cosmic-purple-glow),
+        0 0 30px rgba(109, 74, 255, .25);
 }
 
 .nav-logo span {
 
     color: var(--starlight);
 
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 600;
 
-    letter-spacing: .35em;
+    letter-spacing: .25em;
 }
    /* ===== Navigation ===== */
 
@@ -238,7 +243,7 @@ color: var(--starlight);
     align-items: center;
     justify-content: center;
 
-    padding: 12px 24px;
+    padding: 12px 26px;
 
     border: 1px solid rgba(255,255,255,.10);
 
