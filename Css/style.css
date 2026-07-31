@@ -233,6 +233,30 @@ body{
     transform: translateY(-2px);
     box-shadow: 0 0 20px var(--cosmic-purple-glow);
 }
+/* =========================================
+   FEATURES
+========================================= */
+
+.features{
+    padding: 120px 2rem;
+    position: relative;
+}
+
+.features h2{
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 4rem;
+    color: var(--starlight);
+}
+
+.features-grid{
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
 
 /* =========================================
    RESPONSIVE - MOBILE
