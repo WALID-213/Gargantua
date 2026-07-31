@@ -20,8 +20,27 @@ function resizeCanvas() {
 
 resizeCanvas();
 
-window.addEventListener("resize", resizeCanvas);
+window.addEventListener("resize", 
+     /* ===== Stars ===== */
 
+const stars = [];
+
+const STAR_COUNT = 150;
+
+for (let i = 0; i < STAR_COUNT; i++) {
+
+    stars.push({
+
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+
+        radius: Math.random() * 2 + 0.3,
+
+        opacity: Math.random()
+
+    });
+
+}                   
 /* ===== Animation Loop ===== */
 
 function animate() {
