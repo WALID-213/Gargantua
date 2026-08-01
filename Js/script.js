@@ -43,36 +43,38 @@ function animate() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    stars.forEach(star => {
+   stars.forEach(star => {
 
-        ctx.beginPath();
+    ctx.beginPath();
 
-        ctx.arc(
-            star.x,
-            star.y,
-            star.radius,
-            0,
-            Math.PI * 2
-        );
+    ctx.arc(
+        star.x,
+        star.y,
+        star.radius,
+        0,
+        Math.PI * 2
+    );
 
-        ctx.fillStyle = `rgba(255,255,255,${star.opacity})`;
+    ctx.fillStyle = `rgba(255,255,255,${star.opacity})`;
 
-        ctx.fill();
+    ctx.fill();
 
-        // حركة النجوم
-        star.y += 0.15;
-       star.opacity += star.speed * star.direction;
+    /* حركة النجوم */
+    star.y += 0.15;
 
-if (star.opacity >= 0.7 || star.opacity <= 0.2) {
-    star.direction *= -1;
-}
+    if (star.y > canvas.height) {
+        star.y = -5;
+        star.x = Math.random() * canvas.width;
+    }
 
-        if (star.y > canvas.height) {
-            star.y = -5;
-            star.x = Math.random() * canvas.width;
-        }
+    /* لمعان النجوم */
+    star.opacity += star.speed * star.direction;
 
-    });
+    if (star.opacity >= 0.7 || star.opacity <= 0.2) {
+        star.direction *= -1;
+    }
+
+});
 
     requestAnimationFrame(animate);
 }
