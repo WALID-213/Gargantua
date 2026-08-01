@@ -299,7 +299,13 @@ body{
     .nav-links{
         display: none;
     }
+.menu-toggle{
+    display: block;
+}
 
+.nav-button{
+    display: none;
+}
     .nav-logo span{
         font-size: .75rem;
         letter-spacing: .12em;
