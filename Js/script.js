@@ -33,7 +33,7 @@ for (let i = 0; i < STAR_COUNT; i++) {
     radius: Math.random() * 1.2 + 0.2,
     opacity: Math.random() * 0.5 + 0.2,
     speed: Math.random() * 0.02 + 0.005,
-    direction: Math.random() > 0.5 ? 1 : -1
+    direction: Math.random() > 0.5 ? 1 : -1,
     speedX: 0.02 + Math.random() * 0.02,
     speedY: 0.005 + Math.random() * 0.01,   
 });
