@@ -306,6 +306,25 @@ body{
 .nav-button{
     display: none;
 }
+   .mobile-menu.active{
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 80px;
+    right: 20px;
+
+    width: 220px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: rgba(8,8,20,.95);
+    backdrop-filter: blur(20px);
+
+    gap: 18px;
+   }
     .nav-logo span{
         font-size: .75rem;
         letter-spacing: .12em;
