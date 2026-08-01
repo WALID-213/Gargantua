@@ -34,6 +34,8 @@ for (let i = 0; i < STAR_COUNT; i++) {
     opacity: Math.random() * 0.5 + 0.2,
     speed: Math.random() * 0.02 + 0.005,
     direction: Math.random() > 0.5 ? 1 : -1
+    speedX: 0.02 + Math.random() * 0.02,
+    speedY: 0.005 + Math.random() * 0.01,   
 });
 }
 
@@ -60,12 +62,16 @@ function animate() {
     ctx.fill();
 
     /* حركة النجوم */
-    star.y += 0.15;
+    star.x -= star.speedX;
+star.y += star.speedY;
 
-    if (star.y > canvas.height) {
-        star.y = -5;
-        star.x = Math.random() * canvas.width;
-    }
+if (star.x < -5) {
+    star.x = canvas.width + 5;
+}
+
+if (star.y > canvas.height + 5) {
+    star.y = -5;
+}
 
     /* لمعان النجوم */
     star.opacity += star.speed * star.direction;
