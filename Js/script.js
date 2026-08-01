@@ -28,13 +28,13 @@ const STAR_COUNT = 90;
 
 for (let i = 0; i < STAR_COUNT; i++) {
     stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.2 + 0.2,
-        opacity: Math.random() * 0.5 + 0.2
-       speed: Math.random() * 0.02 + 0.005,
-direction: Math.random() > 0.5 ? 1 : -1
-    });
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 1.2 + 0.2,
+    opacity: Math.random() * 0.5 + 0.2,
+    speed: Math.random() * 0.02 + 0.005,
+    direction: Math.random() > 0.5 ? 1 : -1
+});
 }
 
 /* ===== Animation Loop ===== */
