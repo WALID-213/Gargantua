@@ -61,6 +61,11 @@ function animate() {
 
         // حركة النجوم
         star.y += 0.15;
+       star.opacity += star.speed * star.direction;
+
+if (star.opacity >= 0.7 || star.opacity <= 0.2) {
+    star.direction *= -1;
+}
 
         if (star.y > canvas.height) {
             star.y = -5;
