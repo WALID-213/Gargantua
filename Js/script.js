@@ -24,16 +24,17 @@ window.addEventListener("resize", resizeCanvas);
 
 const stars = [];
 
-const STAR_COUNT = 150;
+const STAR_COUNT = 90;
 
 for (let i = 0; i < STAR_COUNT; i++) {
     stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2 + 0.3,
-        opacity: Math.random()
+        radius: Math.random() * 1.2 + 0.2,
+        opacity: Math.random() * 0.5 + 0.2
     });
 }
+    
 
 /* ===== Animation Loop ===== */
 
