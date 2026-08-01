@@ -233,6 +233,34 @@ body{
     transform: translateY(-2px);
     box-shadow: 0 0 20px var(--cosmic-purple-glow);
 }
+/* ===== Mobile Menu Button ===== */
+
+.menu-toggle{
+    display: none;
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.menu-toggle span{
+    display: block;
+
+    width: 28px;
+    height: 3px;
+
+    margin: 6px auto;
+
+    background: var(--starlight);
+
+    border-radius: 999px;
+
+    transition: all var(--transition-fast);
+}
 /* =========================================
    FEATURES
 ========================================= */
