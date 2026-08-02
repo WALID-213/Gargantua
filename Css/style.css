@@ -29,7 +29,24 @@ body{
         #07080f 45%,
         #05060a 100%);
 }
+.space-nebula{
+    position: fixed;
 
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -3;
+
+    background:
+    radial-gradient(circle at 70% 35%,
+    rgba(109,74,255,.18),
+    transparent 45%),
+
+    radial-gradient(circle at 25% 70%,
+    rgba(74,183,255,.08),
+    transparent 40%);
+}
 /* ===== Hero ===== */
 
 .hero{
