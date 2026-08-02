@@ -144,6 +144,38 @@ body{
 
     opacity:.6;
 }
+/* ===== Cosmic Dust ===== */
+
+.cosmic-dust{
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    opacity: .55;
+
+    background:
+
+    radial-gradient(circle at 70% 42%,
+    rgba(255,255,255,.10) 1px,
+    transparent 2px),
+
+    radial-gradient(circle at 63% 48%,
+    rgba(109,74,255,.12) 2px,
+    transparent 5px),
+
+    radial-gradient(circle at 76% 38%,
+    rgba(74,183,255,.10) 2px,
+    transparent 4px),
+
+    radial-gradient(circle at 68% 52%,
+    rgba(255,255,255,.08) 1px,
+    transparent 3px);
+}
 /* ===== Hero ===== */
 
 .hero{
