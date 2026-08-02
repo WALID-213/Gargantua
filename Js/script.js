@@ -45,7 +45,7 @@ function animate() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGalaxyCore();
-   drawGalaxyArms();
+    drawGalaxy();
     stars.forEach(star => {
 
         ctx.beginPath();
@@ -129,48 +129,65 @@ function drawGalaxyCore(){
 }
 let galaxyRotation = 0;
 
-function drawGalaxyArms(){
+/* ===== Galaxy Stars ===== */
 
-    const cx = canvas.width * 0.72;
-    const cy = canvas.height * 0.42;
+const galaxyStars = [];
 
-    ctx.save();
+for(let i = 0; i < 3000; i++){
 
-    ctx.translate(cx, cy);
+    const angle = Math.random() * Math.PI * 4;
 
-    ctx.rotate(galaxyRotation);
+    const radius = Math.random() * 260;
 
-    for(let arm = 0; arm < 2; arm++){
+    galaxyStars.push({
 
-        ctx.rotate(Math.PI);
+        angle,
+
+        radius,
+
+        size: Math.random() * 1.8 + .2,
+
+        alpha: Math.random() * .8 + .2
+
+    });
+
+}
+
+function drawGalaxy(){
+
+    const cx = canvas.width * .72;
+    const cy = canvas.height * .42;
+
+    galaxyStars.forEach(star=>{
+
+        const spiral = star.angle + star.radius * .03;
+
+        const x =
+        cx +
+        Math.cos(spiral) * star.radius;
+
+        const y =
+        cy +
+        Math.sin(spiral) *
+        star.radius *
+        .45;
 
         ctx.beginPath();
 
-        for(let a = 0; a < Math.PI * 4; a += 0.05){
+        ctx.arc(
+            x,
+            y,
+            star.size,
+            0,
+            Math.PI*2
+        );
 
-            const r = a * 18;
+        ctx.fillStyle =
+        `rgba(255,255,255,${star.alpha})`;
 
-            const x = Math.cos(a) * r;
-            const y = Math.sin(a) * r * 0.45;
+        ctx.fill();
 
-            if(a === 0){
-                ctx.moveTo(x, y);
-            }else{
-                ctx.lineTo(x, y);
-            }
+    });
 
-        }
-
-        ctx.strokeStyle = "rgba(109,74,255,.08)";
-        ctx.lineWidth = 18;
-        ctx.lineCap = "round";
-
-        ctx.stroke();
-
-    }
-
-    ctx.restore();
-
-    galaxyRotation += 0.00015;
 }
 animate();
