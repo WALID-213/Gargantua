@@ -90,4 +90,15 @@ const mobileMenu = document.querySelector(".mobile-menu");
 menuToggle.addEventListener("click", () => {
     mobileMenu.classList.toggle("active");
 });
+const links = document.querySelectorAll(".mobile-menu a");
+
+links.forEach(link => {
+    link.addEventListener("click", () => {
+
+        links.forEach(l => l.classList.remove("active"));
+
+        link.classList.add("active");
+
+    });
+});
 animate();
