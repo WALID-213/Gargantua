@@ -45,6 +45,7 @@ function animate() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGalaxyCore();
+   drawGalaxyArms();
     stars.forEach(star => {
 
         ctx.beginPath();
@@ -125,5 +126,51 @@ function drawGalaxyCore(){
 
     ctx.fill();
 
+}
+let galaxyRotation = 0;
+
+function drawGalaxyArms(){
+
+    const cx = canvas.width * 0.72;
+    const cy = canvas.height * 0.42;
+
+    ctx.save();
+
+    ctx.translate(cx, cy);
+
+    ctx.rotate(galaxyRotation);
+
+    for(let arm = 0; arm < 2; arm++){
+
+        ctx.rotate(Math.PI);
+
+        ctx.beginPath();
+
+        for(let a = 0; a < Math.PI * 4; a += 0.05){
+
+            const r = a * 18;
+
+            const x = Math.cos(a) * r;
+            const y = Math.sin(a) * r * 0.45;
+
+            if(a === 0){
+                ctx.moveTo(x, y);
+            }else{
+                ctx.lineTo(x, y);
+            }
+
+        }
+
+        ctx.strokeStyle = "rgba(109,74,255,.08)";
+        ctx.lineWidth = 18;
+        ctx.lineCap = "round";
+
+        ctx.stroke();
+
+    }
+
+    ctx.restore();
+
+    galaxyRotation += 0.00015;
 }
 animate();
