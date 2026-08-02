@@ -47,6 +47,41 @@ body{
     rgba(74,183,255,.08),
     transparent 40%);
 }
+/* ===== Galaxy Core ===== */
+
+.galaxy-core{
+
+    position: fixed;
+
+    top: 45%;
+    right: 12%;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    background:
+        radial-gradient(circle,
+
+        rgba(255,255,255,.95) 0%,
+
+        rgba(170,140,255,.75) 12%,
+
+        rgba(109,74,255,.35) 28%,
+
+        rgba(74,183,255,.12) 48%,
+
+        transparent 72%);
+
+    filter:
+        blur(40px)
+        drop-shadow(0 0 120px rgba(109,74,255,.45));
+}
 /* ===== Hero ===== */
 
 .hero{
