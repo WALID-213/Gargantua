@@ -236,7 +236,10 @@ body{
 /* ===== Mobile Menu Button ===== */
 
 .menu-toggle{
-    display: none;
+    display: flex;
+   flex-direction: column;
+justify-content: center;
+align-items: center;
 
     width: 46px;
     height: 46px;
@@ -296,11 +299,11 @@ body{
         padding: 10px 20px;
     }
 
-    .nav-links{
+    .mobile-menu{
         display: none;
     }
 .menu-toggle{
-    display: block;
+    display: flex;
 }
 
 .nav-button{
