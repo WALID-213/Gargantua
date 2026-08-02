@@ -29,13 +29,11 @@ body{
         #07080f 45%,
         #05060a 100%);
 }
+
 .space-nebula{
     position: fixed;
-
     inset: 0;
-
     pointer-events: none;
-
     z-index: -3;
 
     background:
@@ -47,119 +45,83 @@ body{
     rgba(74,183,255,.08),
     transparent 40%);
 }
+
 /* ===== Galaxy Core ===== */
 
 .galaxy-core{
-
     position: fixed;
-
     top: 45%;
     right: 12%;
-
     width: 420px;
     height: 420px;
-
     border-radius: 50%;
-
     pointer-events: none;
-
     z-index: -2;
 
     background:
         radial-gradient(circle,
-
         rgba(255,255,255,.95) 0%,
-
         rgba(170,140,255,.75) 12%,
-
         rgba(109,74,255,.35) 28%,
-
         rgba(74,183,255,.12) 48%,
-
         transparent 72%);
 
     filter:
         blur(40px)
         drop-shadow(0 0 120px rgba(109,74,255,.45));
 }
+
 /* ===== Galaxy Arms ===== */
 
 .galaxy-arms{
-
     position: fixed;
-
     top: 45%;
     right: 12%;
-
     width: 520px;
     height: 520px;
-
     transform: translate(50%,-50%) rotate(-18deg);
-
     border-radius: 50%;
-
     pointer-events: none;
-
     z-index: -2;
-
     opacity: .65;
 }
 
 .galaxy-arms::before,
 .galaxy-arms::after{
-
     content:"";
-
     position:absolute;
-
     inset:0;
-
     border-radius:50%;
 
     background:
     conic-gradient(
-
         transparent 0deg,
-
         rgba(109,74,255,.18) 35deg,
-
         transparent 80deg,
-
         rgba(74,183,255,.16) 145deg,
-
         transparent 210deg,
-
         rgba(109,74,255,.15) 285deg,
-
         transparent 360deg
-
     );
 
     filter: blur(26px);
 }
 
 .galaxy-arms::after{
-
     transform: rotate(90deg);
-
     opacity:.6;
 }
+
 /* ===== Cosmic Dust ===== */
 
 .cosmic-dust{
-
     position: fixed;
-
     inset: 0;
-
     pointer-events: none;
-
     z-index: -2;
-
     opacity: .55;
 
     background:
-
     radial-gradient(circle at 70% 42%,
     rgba(255,255,255,.10) 1px,
     transparent 2px),
@@ -176,6 +138,7 @@ body{
     rgba(255,255,255,.08) 1px,
     transparent 3px);
 }
+
 /* ===== Hero ===== */
 
 .hero{
@@ -341,7 +304,11 @@ body{
     transform: translateY(-2px);
 }
 
-.mobile-menu a.active::after{
+.nav-links a.active {
+    color: var(--starlight);
+}
+
+.nav-links a.active::after{
     content: "";
     position: absolute;
     left: 0;
@@ -375,37 +342,31 @@ body{
     transform: translateY(-2px);
     box-shadow: 0 0 20px var(--cosmic-purple-glow);
 }
+
 /* ===== Mobile Menu Button ===== */
 
 .menu-toggle{
     display: flex;
-   flex-direction: column;
-justify-content: center;
-align-items: center;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 46px;
     height: 46px;
-
     border: none;
     background: transparent;
-
     cursor: pointer;
 }
 
 .menu-toggle span{
     display: block;
-
     width: 28px;
     height: 3px;
-
     margin: 6px auto;
-
     background: var(--starlight);
-
     border-radius: 999px;
-
     transition: all var(--transition-fast);
 }
+
 /* =========================================
    FEATURES
 ========================================= */
@@ -425,22 +386,18 @@ align-items: center;
 .features-grid{
     max-width: 1200px;
     margin: 0 auto;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
+
 .feature-card{
     position: relative;
-
     padding: 35px 28px;
-
     border: 1px solid rgba(255,255,255,.08);
     border-radius: 24px;
-
     background: rgba(255,255,255,.03);
     backdrop-filter: blur(16px);
-
     transition:
         transform .35s ease,
         border-color .35s ease,
@@ -449,11 +406,8 @@ align-items: center;
 
 .feature-card:hover{
     transform: translateY(-12px);
-
     border-color: var(--cosmic-purple);
-
-    box-shadow:
-        0 0 35px rgba(109,74,255,.25);
+    box-shadow: 0 0 35px rgba(109,74,255,.25);
 }
 
 .feature-icon{
@@ -471,6 +425,7 @@ align-items: center;
     color: var(--text-muted);
     line-height: 1.8;
 }
+
 /* =========================================
    PRICING
 ========================================= */
@@ -488,7 +443,6 @@ align-items: center;
 .pricing-grid{
     max-width:1200px;
     margin:0 auto;
-
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:2rem;
@@ -496,35 +450,24 @@ align-items: center;
 
 .price-card{
     position:relative;
-
     padding:45px 30px;
-
     border-radius:24px;
-
     border:1px solid rgba(255,255,255,.08);
-
     background:rgba(255,255,255,.03);
-
     backdrop-filter:blur(16px);
-
     text-align:center;
-
-    transition:.35s;
+    transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
 
 .price-card:hover{
     transform:translateY(-12px);
-
     border-color:var(--cosmic-purple);
-
     box-shadow:0 0 35px rgba(109,74,255,.25);
 }
 
 .price{
     font-size:2.8rem;
-
     color:var(--starlight);
-
     margin:25px 0;
 }
 
@@ -535,32 +478,23 @@ align-items: center;
 
 .featured{
     border-color:var(--cosmic-purple);
-
     box-shadow:0 0 35px rgba(109,74,255,.30);
-
     transform:scale(1.05);
 }
 
 .popular{
     position:absolute;
-
     top:-14px;
     left:50%;
-
     transform:translateX(-50%);
-
     padding:8px 18px;
-
     border-radius:999px;
-
     background:var(--cosmic-purple);
-
     color:#fff;
-
     font-size:.75rem;
-
     letter-spacing:.12em;
 }
+
 /* =========================================
    RESPONSIVE - MOBILE
 ========================================= */
@@ -574,34 +508,32 @@ align-items: center;
     .mobile-menu{
         display: none;
     }
-.menu-toggle{
-    display: flex;
-}
 
-.nav-button{
-    display: none;
-}
-   .mobile-menu.active{
-    display: flex;
-    flex-direction: column;
-align-items: flex-start;
-    position: absolute;
-    top: 80px;
-    right: 20px;
-z-index: 1001;
-    width: 220px;
+    .menu-toggle{
+        display: flex;
+    }
 
-    padding: 20px;
+    .nav-button{
+        display: none;
+    }
 
-    border-radius: 20px;
+    .mobile-menu.active{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        z-index: 1001;
+        width: 220px;
+        padding: 20px;
+        border-radius: 20px;
+        background: rgba(8,8,20,.95);
+        backdrop-filter: blur(20px);
+        gap: 18px;
+        box-shadow: 0 0 30px rgba(109,74,255,.25);
+    }
 
-    background: rgba(8,8,20,.95);
-    backdrop-filter: blur(20px);
-
-    gap: 18px;
-
-      box-shadow: 0 0 30px rgba(109,74,255,.25);
-   }
     .nav-logo span{
         font-size: .75rem;
         letter-spacing: .12em;
@@ -611,7 +543,6 @@ z-index: 1001;
         width: 34px;
         height: 34px;
     }
-
 
     .hero h1{
         font-size: clamp(3rem, 14vw, 5rem);
@@ -624,8 +555,8 @@ z-index: 1001;
 
     .hero-description{
         font-size: 1rem;
-       max-width: 320px;
-       margin: 0 auto 3rem;
+        max-width: 320px;
+        margin: 0 auto 3rem;
     }
 
     .badge{
@@ -642,11 +573,16 @@ z-index: 1001;
     .btn-secondary{
         width: 220px;
     }
-   .pricing-grid{
-    grid-template-columns:1fr;
-}
 
-.featured{
-    transform:none;
-}
-}
+    .pricing-grid{
+        grid-template-columns:1fr;
+    }
+
+    .featured{
+        transform:none;
+    }
+
+    .features-grid{
+        grid-template-columns: 1fr;
+    }
+   }
