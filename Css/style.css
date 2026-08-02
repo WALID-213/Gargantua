@@ -236,7 +236,7 @@ body{
 /* ===== Mobile Menu Button ===== */
 
 .menu-toggle{
-    display: flex;
+    display: none;
    flex-direction: column;
 justify-content: center;
 align-items: center;
@@ -340,10 +340,6 @@ z-index: 1001;
         height: 34px;
     }
 
-    .nav-button{
-        padding: 10px 18px;
-        font-size: .85rem;
-    }
 
     .hero h1{
         font-size: clamp(3rem, 14vw, 5rem);
