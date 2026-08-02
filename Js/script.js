@@ -44,7 +44,7 @@ for (let i = 0; i < STAR_COUNT; i++) {
 function animate() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+    drawGalaxyCore();
     stars.forEach(star => {
 
         ctx.beginPath();
@@ -101,4 +101,29 @@ links.forEach(link => {
 
     });
 });
+function drawGalaxyCore(){
+
+    const x = canvas.width * 0.72;
+    const y = canvas.height * 0.42;
+
+    const gradient = ctx.createRadialGradient(
+        x, y, 0,
+        x, y, 240
+    );
+
+    gradient.addColorStop(0,"rgba(255,255,255,.95)");
+    gradient.addColorStop(.08,"rgba(170,140,255,.85)");
+    gradient.addColorStop(.22,"rgba(109,74,255,.45)");
+    gradient.addColorStop(.45,"rgba(74,183,255,.18)");
+    gradient.addColorStop(1,"rgba(0,0,0,0)");
+
+    ctx.fillStyle = gradient;
+
+    ctx.beginPath();
+
+    ctx.arc(x,y,240,0,Math.PI*2);
+
+    ctx.fill();
+
+}
 animate();
