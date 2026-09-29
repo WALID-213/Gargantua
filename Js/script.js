@@ -1,7 +1,7 @@
 /* ===========================================
    GARGANTUA
    Space Engine - Depth Stars
-   Version: Alpha 1.1
+   Version: Alpha 1.2
 =========================================== */
 
 /* ===== Canvas ===== */
@@ -31,31 +31,34 @@ window.addEventListener("resize", resizeCanvas);
 
 /* ===== Stars (depth: 0 = far, 1 = near) ===== */
 
-const STAR_COUNT = width < 768 ? 90 : 140;
-const COLORS = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#B9A6FF", "#9BD4FF"];
+const STAR_COUNT = width < 768 ? 110 : 170;
+
+/* غالبية النجوم بيضاء، ولمسة خفيفة جدًا من الألوان فقط للقريبة */
+const TINTS = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#EDE7FF", "#E6F3FF"];
 
 const stars = [];
 
 for (let i = 0; i < STAR_COUNT; i++) {
 
-    const depth = Math.pow(Math.random(), 1.8);
+    /* أس أعلى = نجوم بعيدة وخافتة أكثر، زي سماء حقيقية */
+    const depth = Math.pow(Math.random(), 2.2);
 
     stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         depth,
-        radius: 0.25 + depth * 1.6,
-        baseAlpha: 0.25 + depth * 0.55,
-        speed: 0.01 + depth * 0.09,
+        radius: 0.2 + depth * 1.1,
+        baseAlpha: 0.15 + depth * 0.45,
+        speed: 0.004 + depth * 0.03,
         phase: Math.random() * Math.PI * 2,
-        twinkle: 0.6 + Math.random() * 1.4,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)]
+        twinkle: 0.25 + Math.random() * 0.5,
+        color: TINTS[Math.floor(Math.random() * TINTS.length)]
     });
 }
 
 /* ===== Parallax (mouse / touch / scroll) ===== */
 
-const PARALLAX = 26;
+const PARALLAX = 14;
 
 let targetX = 0;
 let targetY = 0;
@@ -88,34 +91,35 @@ function draw(time) {
 
     ctx.clearRect(0, 0, width, height);
 
-    /* حركة ناعمة للكاميرا */
-    offsetX += (targetX - offsetX) * 0.04;
-    offsetY += (targetY - offsetY) * 0.04;
+    /* حركة كاميرا ناعمة جدًا */
+    offsetX += (targetX - offsetX) * 0.03;
+    offsetY += (targetY - offsetY) * 0.03;
 
-    const t = time * 0.001;
+    const t = time * 0.0006;
 
     for (const s of stars) {
 
         if (!reduceMotion) {
             s.x -= s.speed;
-            s.y += s.speed * 0.35;
+            s.y += s.speed * 0.3;
 
             if (s.x < -40) s.x = width + 40;
             if (s.y > height + 40) s.y = -40;
         }
 
         const px = s.x - offsetX * PARALLAX * s.depth;
-        const py = s.y - offsetY * PARALLAX * s.depth - scrollY * 0.05 * s.depth;
+        const py = s.y - offsetY * PARALLAX * s.depth - scrollY * 0.04 * s.depth;
 
-        const alpha = s.baseAlpha * (0.75 + 0.25 * Math.sin(t * s.twinkle + s.phase));
+        /* وميض خفيف جدًا حول القيمة الأساسية، مريح للعين */
+        const alpha = s.baseAlpha * (0.85 + 0.15 * Math.sin(t * s.twinkle + s.phase));
 
         ctx.fillStyle = s.color;
 
-        /* هالة خفيفة للنجوم القريبة فقط */
-        if (s.depth > 0.75) {
-            ctx.globalAlpha = alpha * 0.18;
+        /* هالة ناعمة للنجوم القريبة فقط */
+        if (s.depth > 0.8) {
+            ctx.globalAlpha = alpha * 0.15;
             ctx.beginPath();
-            ctx.arc(px, py, s.radius * 3.2, 0, Math.PI * 2);
+            ctx.arc(px, py, s.radius * 3, 0, Math.PI * 2);
             ctx.fill();
         }
 
