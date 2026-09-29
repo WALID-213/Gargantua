@@ -1,36 +1,81 @@
-/* ===========================================
-   GARGANTUA DESIGN SYSTEM
-   Version: 1.0 Alpha
-=========================================== */
+/* =========================================
+   GARGANTUA - DESIGN VARIABLES
+   Version: Alpha 1.0
+========================================= */
 
 :root {
 
-  /* ===== Colors ===== */
-  --void-black: #05060A;
-  --deep-space: #0D1021;
+    /* =====================================
+       COLORS
+    ===================================== */
 
-  --cosmic-purple: #6D4AFF;
-  --nebula-blue: #4AB7FF;
+    --void-black: #05060A;
+    --deep-space: #0D1021;
 
-  --starlight: #F5F7FF;
+    --cosmic-purple: #6D4AFF;
+    --nebula-blue: #4AB7FF;
 
-   --text-muted: #BFC5D4;
+    --starlight: #F5F7FF;
+    --text-muted: #BFC5D4;
 
-  --aurora-green: #3DDC97;
-  --supernova-red: #FF4D6D;
+    --aurora-green: #3DDC97;
+    --supernova-red: #FF4D6D;
 
-  /* ===== Glow Colors ===== */
-  --cosmic-purple-glow: rgba(109, 74, 255, 0.4);
-  --nebula-blue-glow: rgba(74, 183, 255, 0.4);
 
-  /* ===== Typography ===== */
-  --font-main: "Space Grotesk", sans-serif;
+    /* =====================================
+       GLOW
+    ===================================== */
 
-  /* ===== Border Radius ===== */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-   /* ===== Animation ===== */
+    --cosmic-purple-glow:
+        rgba(109, 74, 255, .40);
 
---transition-fast: .3s ease;
---transition-medium: .5s ease;
+    --nebula-blue-glow:
+        rgba(74, 183, 255, .40);
+
+
+    /* =====================================
+       TYPOGRAPHY
+    ===================================== */
+
+    --font-main:
+        "Space Grotesk",
+        sans-serif;
+
+
+    /* =====================================
+       BORDER RADIUS
+    ===================================== */
+
+    --radius-sm: 8px;
+
+    --radius-md: 16px;
+
+    --radius-lg: 24px;
+
+    --radius-pill: 999px;
+
+
+    /* =====================================
+       TRANSITIONS
+    ===================================== */
+
+    --transition-fast:
+        .3s ease;
+
+    --transition-medium:
+        .5s ease;
+
+    --transition-slow:
+        .8s ease;
+
+
+    /* =====================================
+       LAYOUT
+    ===================================== */
+
+    --content-width: 1200px;
+
+    --navbar-width: 1100px;
+
+    --section-padding: 120px;
 }
