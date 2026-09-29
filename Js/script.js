@@ -1,7 +1,7 @@
 /* ===========================================
    GARGANTUA
-   Space Engine
-   Version: Alpha 1.0
+   Space Engine - Depth Stars
+   Version: Alpha 1.1
 =========================================== */
 
 /* ===== Canvas ===== */
@@ -9,212 +9,160 @@
 const canvas = document.getElementById("stars-canvas");
 const ctx = canvas.getContext("2d");
 
-/* ===== Resize ===== */
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let width = 0;
+let height = 0;
 
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    createGalaxyGradient();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 
 resizeCanvas();
-
 window.addEventListener("resize", resizeCanvas);
 
-/* ===== Stars ===== */
+/* ===== Stars (depth: 0 = far, 1 = near) ===== */
+
+const STAR_COUNT = width < 768 ? 90 : 140;
+const COLORS = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#B9A6FF", "#9BD4FF"];
 
 const stars = [];
 
-const STAR_COUNT = 90;
-
 for (let i = 0; i < STAR_COUNT; i++) {
+
+    const depth = Math.pow(Math.random(), 1.8);
+
     stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        radius: Math.random() * 1.2 + 0.2,
-        opacity: Math.random() * 0.5 + 0.2,
-        speed: Math.random() * 0.02 + 0.005,
-        direction: Math.random() > 0.5 ? 1 : -1,
-        speedX: 0.02 + Math.random() * 0.02,
-        speedY: 0.005 + Math.random() * 0.01
+        x: Math.random() * width,
+        y: Math.random() * height,
+        depth,
+        radius: 0.25 + depth * 1.6,
+        baseAlpha: 0.25 + depth * 0.55,
+        speed: 0.01 + depth * 0.09,
+        phase: Math.random() * Math.PI * 2,
+        twinkle: 0.6 + Math.random() * 1.4,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)]
     });
 }
 
-/* ===== Galaxy Gradient (cached) ===== */
+/* ===== Parallax (mouse / touch / scroll) ===== */
 
-let galaxyGradient = null;
+const PARALLAX = 26;
 
-function createGalaxyGradient(){
+let targetX = 0;
+let targetY = 0;
+let offsetX = 0;
+let offsetY = 0;
 
-    const x = canvas.width * 0.72;
-    const y = canvas.height * 0.42;
-
-    galaxyGradient = ctx.createRadialGradient(
-        x, y, 0,
-        x, y, 240
-    );
-
-    galaxyGradient.addColorStop(0,"rgba(255,255,255,.95)");
-    galaxyGradient.addColorStop(.08,"rgba(170,140,255,.85)");
-    galaxyGradient.addColorStop(.22,"rgba(109,74,255,.45)");
-    galaxyGradient.addColorStop(.45,"rgba(74,183,255,.18)");
-    galaxyGradient.addColorStop(1,"rgba(0,0,0,0)");
+function setTarget(clientX, clientY) {
+    targetX = (clientX / width - 0.5) * 2;
+    targetY = (clientY / height - 0.5) * 2;
 }
 
-/* ===== Galaxy Core ===== */
+window.addEventListener("pointermove", e => setTarget(e.clientX, e.clientY), { passive: true });
 
-function drawGalaxyCore(){
+window.addEventListener("touchmove", e => {
+    const t = e.touches[0];
+    if (t) setTarget(t.clientX, t.clientY);
+}, { passive: true });
 
-    const x = canvas.width * 0.72;
-    const y = canvas.height * 0.42;
+let scrollY = 0;
 
-    ctx.fillStyle = galaxyGradient;
-
-    ctx.beginPath();
-
-    ctx.arc(x, y, 240, 0, Math.PI * 2);
-
-    ctx.fill();
-
-}
-
-/* ===== Galaxy Stars ===== */
-
-const galaxyStars = [];
-
-const GALAXY_STAR_COUNT = 500;
-
-for(let i = 0; i < GALAXY_STAR_COUNT; i++){
-
-    const angle = Math.random() * Math.PI * 4;
-
-    const radius = Math.random() * 260;
-
-    galaxyStars.push({
-
-        angle,
-
-        radius,
-
-        size: Math.random() * 1.8 + .2,
-
-        alpha: Math.random() * .8 + .2
-
-    });
-
-}
-
-function drawGalaxy(){
-
-    const cx = canvas.width * .72;
-    const cy = canvas.height * .42;
-
-    galaxyStars.forEach(star=>{
-
-        const spiral = star.angle + star.radius * .03;
-
-        const x =
-        cx +
-        Math.cos(spiral) * star.radius;
-
-        const y =
-        cy +
-        Math.sin(spiral) *
-        star.radius *
-        .45;
-
-        ctx.beginPath();
-
-        ctx.arc(
-            x,
-            y,
-            star.size,
-            0,
-            Math.PI*2
-        );
-
-        ctx.fillStyle =
-        `rgba(255,255,255,${star.alpha})`;
-
-        ctx.fill();
-
-    });
-
-}
+window.addEventListener("scroll", () => {
+    scrollY = window.scrollY;
+}, { passive: true });
 
 /* ===== Animation Loop ===== */
 
-function animate() {
+let running = true;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function draw(time) {
 
-    drawGalaxyCore();
-    drawGalaxy();
+    ctx.clearRect(0, 0, width, height);
 
-    stars.forEach(star => {
+    /* حركة ناعمة للكاميرا */
+    offsetX += (targetX - offsetX) * 0.04;
+    offsetY += (targetY - offsetY) * 0.04;
 
+    const t = time * 0.001;
+
+    for (const s of stars) {
+
+        if (!reduceMotion) {
+            s.x -= s.speed;
+            s.y += s.speed * 0.35;
+
+            if (s.x < -40) s.x = width + 40;
+            if (s.y > height + 40) s.y = -40;
+        }
+
+        const px = s.x - offsetX * PARALLAX * s.depth;
+        const py = s.y - offsetY * PARALLAX * s.depth - scrollY * 0.05 * s.depth;
+
+        const alpha = s.baseAlpha * (0.75 + 0.25 * Math.sin(t * s.twinkle + s.phase));
+
+        ctx.fillStyle = s.color;
+
+        /* هالة خفيفة للنجوم القريبة فقط */
+        if (s.depth > 0.75) {
+            ctx.globalAlpha = alpha * 0.18;
+            ctx.beginPath();
+            ctx.arc(px, py, s.radius * 3.2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        ctx.globalAlpha = alpha;
         ctx.beginPath();
-
-        ctx.arc(
-            star.x,
-            star.y,
-            star.radius,
-            0,
-            Math.PI * 2
-        );
-
-        ctx.fillStyle = `rgba(255,255,255,${star.opacity})`;
-
+        ctx.arc(px, py, s.radius, 0, Math.PI * 2);
         ctx.fill();
+    }
 
-        /* حركة النجوم */
-        star.x -= star.speedX;
-        star.y += star.speedY;
+    ctx.globalAlpha = 1;
 
-        if (star.x < -5) {
-            star.x = canvas.width + 5;
-        }
-
-        if (star.y > canvas.height + 5) {
-            star.y = -5;
-        }
-
-        /* لمعان النجوم */
-        star.opacity += star.speed * star.direction;
-
-        if (star.opacity >= 0.7 || star.opacity <= 0.2) {
-            star.direction *= -1;
-        }
-
-    });
-
-    requestAnimationFrame(animate);
+    if (running && !reduceMotion) {
+        requestAnimationFrame(draw);
+    }
 }
+
+/* إيقاف الرسم لما التبويب مخفي (توفير بطارية) */
+document.addEventListener("visibilitychange", () => {
+    running = !document.hidden;
+    if (running && !reduceMotion) requestAnimationFrame(draw);
+});
+
+requestAnimationFrame(draw);
 
 /* ===== Mobile Menu ===== */
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 
-menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("active");
-});
+if (menuToggle && mobileMenu) {
 
-const links = document.querySelectorAll(".mobile-menu a");
-
-links.forEach(link => {
-    link.addEventListener("click", () => {
-
-        links.forEach(l => l.classList.remove("active"));
-
-        link.classList.add("active");
-
-        mobileMenu.classList.remove("active");
-
+    menuToggle.addEventListener("click", () => {
+        const isOpen = mobileMenu.classList.toggle("active");
+        menuToggle.setAttribute("aria-expanded", isOpen);
+        menuToggle.setAttribute("aria-label", isOpen ? "Close Menu" : "Open Menu");
     });
-});
 
-/* ===== Start ===== */
+    const links = mobileMenu.querySelectorAll("a");
 
-createGalaxyGradient();
-animate();
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+            links.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+
+            mobileMenu.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Open Menu");
+        });
+    });
+}
